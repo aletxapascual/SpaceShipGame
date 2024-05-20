@@ -17,23 +17,27 @@ public class Laser extends MovingObject{
 	}
 
 	@Override
-	public void update() {
+	public void update(float dt) {
 		position = position.add(velocity);
 		if(position.getX() < 0 || position.getX() > Constants.WIDTH ||
 				position.getY() < 0 || position.getY() > Constants.HEIGHT){
-			gameState.getMovingObjects().remove(this);
-		}
-		
+			Destroy();
+		}	
+		collidesWith();
 	}
  
 	@Override
 	public void draw(Graphics g) {
 		Graphics2D g2d=(Graphics2D)g;
-		at=AffineTransform.getTranslateInstance(position.getX()-width/2,position.getY());
-		
+		at=AffineTransform.getTranslateInstance(position.getX()-width/2,position.getY());		
 		at.rotate(angle,width/2,0);
 		g2d.drawImage(texture,at,null);
 		
+	}
+	
+	//Obtener centro del laser
+	public Vector2D getCenter(){
+		return new Vector2D(position.getX() + width/2, position.getY() + width/2);
 	}
 
 }

@@ -8,6 +8,11 @@ public class Vector2D {
 		this.y=y;
 	}
 	
+	public Vector2D(Vector2D v) {
+		this.x = v.x;
+		this.y = v.y;
+	}
+	
 	//Constructor para sobrecargar metodos
 	
 	public Vector2D() {
@@ -17,6 +22,10 @@ public class Vector2D {
 	
 	public Vector2D add(Vector2D v) {
 		return new Vector2D(x+ v.getX(), y+ v.getY());
+	}
+	
+	public Vector2D subtract(Vector2D v) {
+		return new Vector2D(x- v.getX(), y- v.getY());
 	}
 	
 	public Vector2D scale(double value) {
@@ -42,6 +51,10 @@ public class Vector2D {
 	public Vector2D setDirection(double angle) {
 		double magnitude = getMagnitude();
 		return new Vector2D(Math.cos(angle)*magnitude, Math.sin(angle)*magnitude);
+	}
+	
+	public double getAngle(){
+		return Math.asin(y/getMagnitude());
 	}
 	
 	public double getX() {

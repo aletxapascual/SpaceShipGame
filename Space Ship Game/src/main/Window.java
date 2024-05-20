@@ -10,7 +10,9 @@ import javax.swing.JFrame;
 import gameObjects.Constants;
 import graphics.Assets;
 import input.KeyBoard;
-import states.GameState;
+import input.MouseInput;
+import states.LoadingState;
+import states.State;
 
 public class Window extends JFrame implements Runnable{
 	
@@ -27,8 +29,8 @@ public class Window extends JFrame implements Runnable{
 	private double delta = 0;
 	private int AVERAGEFPS = FPS;
 	
-	private GameState gameState;
 	private KeyBoard keyBoard;
+	private MouseInput mouseInput;
 	
 	
 	public Window() {
@@ -44,6 +46,7 @@ public class Window extends JFrame implements Runnable{
 		
 		canvas= new Canvas();
 		keyBoard= new KeyBoard();
+		mouseInput = new MouseInput();
 		
 		canvas.setPreferredSize(new Dimension(Constants.WIDTH, Constants.HEIGHT));
 		canvas.setMaximumSize(new Dimension(Constants.WIDTH, Constants.HEIGHT));
@@ -52,6 +55,8 @@ public class Window extends JFrame implements Runnable{
 		
 		add(canvas);
 		canvas.addKeyListener(keyBoard);
+		canvas.addMouseListener(mouseInput);
+		canvas.addMouseMotionListener(mouseInput);
 		setVisible(true);
 		
 	}
@@ -62,9 +67,9 @@ public class Window extends JFrame implements Runnable{
 	}
 	
 	
-	private void update() {
+	private void update(float dt){
 		keyBoard.update();
-		gameState.update();
+		State.getCurrentState().update(dt);
 	}
 	
 	private void draw() {
@@ -75,23 +80,25 @@ public class Window extends JFrame implements Runnable{
 			return;
 		}
 		
-		g=bs.getDrawGraphics();
-		
+		g=bs.getDrawGraphics();		
 		g.setColor(Color.BLACK);
-		
 		g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT);
-		
-		gameState.draw(g);
-		
+		State.getCurrentState().draw(g);
+		g.setColor(Color.WHITE);
 		g.drawString(""+AVERAGEFPS,10,20);
 		
 		g.dispose();
 		bs.show();
 	}
 	
-	private void init() {
-		Assets.init();
-		gameState= new GameState();
+	private void init(){		
+		Thread loadingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				Assets.init();
+			}
+		});
+		State.changeState(new LoadingState(loadingThread));
 	}
 	
 	@Override
@@ -111,7 +118,7 @@ public class Window extends JFrame implements Runnable{
 			lastTime = now;
 			
 			if(delta>=1) {
-				update();
+				update((float) (delta * TARGETTIME * 0.000001f));
 				draw();
 				delta --;
 				frames++;
@@ -121,10 +128,8 @@ public class Window extends JFrame implements Runnable{
 				AVERAGEFPS = frames;
 				frames =0;
 				time =0;
-			}
-			
-		}
-		
+			}			
+		}		
 		
 		stop();
 	}
