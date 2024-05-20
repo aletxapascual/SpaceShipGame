@@ -20,7 +20,7 @@ public class LoadingState extends State{
 	public LoadingState(Thread loadingThread) {
 		this.loadingThread = loadingThread;
 		this.loadingThread.start();
-		font = Loader.loadFont("/fonts/kenvector_future_thin.ttf", 38);
+		font = Loader.loadFont("/fonts/ARCADE_N.ttf", 38);
 	}
 	
 	@Override
@@ -46,7 +46,7 @@ public class LoadingState extends State{
 				Color.WHITE,
 				Constants.WIDTH / 2 + Constants.LOADING_BAR_WIDTH / 2,
 				Constants.HEIGHT / 2 + Constants.LOADING_BAR_HEIGHT / 2,
-				Color.BLUE
+				Color.BLACK
 				);
 		
 		Graphics2D g2d = (Graphics2D)g;	
@@ -68,7 +68,7 @@ public class LoadingState extends State{
 				true, Color.WHITE, font);
 		
 		
-		Text.drawText(g2d, "LOADING...", new Vector2D(Constants.WIDTH / 2, Constants.HEIGHT / 2 + 90),
+		Text.drawText(g2d, "LOADING...", new Vector2D(Constants.WIDTH / 2, Constants.HEIGHT / 2 + 120),
 				true, Color.WHITE, font);
 		
 	}

@@ -60,7 +60,7 @@ public class Button {
 				text,
 				new Vector2D(
 						boundingBox.getX() + boundingBox.getWidth() / 2,
-						boundingBox.getY() + boundingBox.getHeight()),
+						boundingBox.getY() + boundingBox.getHeight()/1.35),
 				true,
 				Color.BLACK,
 				Assets.fontMed);	

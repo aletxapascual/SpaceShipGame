@@ -1,16 +1,23 @@
 package states;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import gameObjects.Constants;
 import graphics.Assets;
+import graphics.Loader;
+import graphics.Text;
+import math.Vector2D;
 import ui.Action;
 import ui.Button;
 
 public class MenuState extends State{
 	
 	private ArrayList<Button> buttons;
+	private Font font;
 	
 	public MenuState() {
 		buttons = new ArrayList<Button>();
@@ -57,6 +64,9 @@ public class MenuState extends State{
 					}
 				}
 				));
+		
+		font = Loader.loadFont("/fonts/ARCADE_N.ttf", 38);
+		
 	}	
 	
 	@Override
@@ -65,12 +75,17 @@ public class MenuState extends State{
 			b.update();
 		}
 	}
-
+	
+	
 	@Override
 	public void draw(Graphics g) {
+		
+		Text.drawText(g, "Space Ship Game", new Vector2D(Constants.WIDTH / 2, Constants.HEIGHT / 4), true, Color.RED, font);
+		
 		for(Button b: buttons) {
 			b.draw(g);
-		}
+		}	
+		
 	}
 
 }

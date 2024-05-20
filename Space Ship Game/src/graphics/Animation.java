@@ -24,9 +24,8 @@ public class Animation {
 	}
 	
 	//cambiar los fotogramas cuando va pasando el tiempo
-public void update(float dt){
-		time += dt;	
-		
+	public void update(float dt){
+		time += dt;		
 		if(time > velocity){
 			time  = 0;
 			index ++;

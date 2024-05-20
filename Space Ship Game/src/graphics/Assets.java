@@ -58,8 +58,8 @@ public class Assets {
 		ufo = loadImage("/ships/ufo.png");
 		life = loadImage("/others/life.png");
 		
-		fontBig = loadFont("/fonts/kenvector_future_thin.ttf", 42);		
-		fontMed = loadFont("/fonts/kenvector_future_thin.ttf", 20);
+		fontBig = loadFont("/fonts/ARCADE_N.ttf", 35);		
+		fontMed = loadFont("/fonts/ARCADE_N.ttf", 13);
 				
 		backgroundMusic = loadSound("/sounds/backgroundMusic.wav");
 		explosion = loadSound("/sounds/explosion.wav");

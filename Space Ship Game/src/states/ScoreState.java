@@ -62,7 +62,6 @@ public class ScoreState extends State{
 				highScores.poll();
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -90,8 +89,8 @@ public class ScoreState extends State{
 				100
 				);
 		
-		Text.drawText(g, Constants.SCORE, scorePos, true, Color.BLUE, Assets.fontBig);
-		Text.drawText(g, Constants.DATE, datePos, true, Color.BLUE, Assets.fontBig);
+		Text.drawText(g, Constants.SCORE, scorePos, true, Color.RED, Assets.fontBig);
+		Text.drawText(g, Constants.DATE, datePos, true, Color.RED, Assets.fontBig);
 		
 		scorePos.setY(scorePos.getY() + 40);
 		datePos.setY(datePos.getY() + 40);
