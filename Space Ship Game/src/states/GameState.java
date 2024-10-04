@@ -61,7 +61,7 @@ public class GameState extends State{
 		//Inicializar musica de fondo
 		backgroundMusic= new Sound(Assets.backgroundMusic);
 		backgroundMusic.loop();
-		backgroundMusic.changeVolume(-10.0f);
+		backgroundMusic.changeVolume(-30.0f);
 		
 		gameOverTimer = 0;
 		ufoSpawner = 0;

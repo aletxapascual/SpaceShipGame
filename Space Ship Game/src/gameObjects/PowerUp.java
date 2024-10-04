@@ -30,6 +30,7 @@ public class PowerUp extends MovingObject {
 	void executeAction() {
 		action.doAction();
 		powerUpPick.play();
+		powerUpPick.changeVolume(-30.0f);
 	}
 
 	@Override

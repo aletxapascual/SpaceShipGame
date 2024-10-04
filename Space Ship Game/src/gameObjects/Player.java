@@ -143,6 +143,7 @@ public class Player extends MovingObject {
 	
 			fireRate = 0;
 			shoot.play();
+			shoot.changeVolume(-15.0f);
 			
 		}
 		
@@ -220,6 +221,7 @@ public class Player extends MovingObject {
 		spawnTime = 0;
 		//sonido perder
 		loose.play();
+		loose.changeVolume(-30.0f);
 		if(!gameState.subtractLife(position)) {
 			gameState.gameOver();
 			super.Destroy();
